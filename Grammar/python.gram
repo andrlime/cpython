@@ -813,6 +813,12 @@ shift_expr[expr_ty]:
     | a=shift_expr '<<' b=sum { _PyAST_BinOp(a, LShift, b, EXTRA) }
     | a=shift_expr '>>' b=sum { _PyAST_BinOp(a, RShift, b, EXTRA) }
     | invalid_arithmetic
+    | pipe
+
+# Pipe
+# --------------------
+pipe[expr_ty]:
+    | a=pipe '|>' b=sum { _PyAST_Call(b, _PyPegen_create_pipe_call_arguments(p, a), NULL, EXTRA) }
     | sum
 
 # Arithmetic operators

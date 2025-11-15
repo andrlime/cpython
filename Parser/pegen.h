@@ -371,6 +371,8 @@ stmt_ty _PyPegen_checked_future_import(Parser *p, identifier module, asdl_alias_
 asdl_stmt_seq* _PyPegen_register_stmts(Parser *p, asdl_stmt_seq* stmts);
 stmt_ty _PyPegen_register_stmt(Parser *p, stmt_ty s);
 
+asdl_expr_seq* _PyPegen_create_pipe_call_arguments(Parser *p, expr_ty list);
+
 // Parser API
 
 Parser *_PyPegen_Parser_New(struct tok_state *, int, int, int, int *, const char*, PyArena *);

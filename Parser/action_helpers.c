@@ -836,6 +836,21 @@ _PyPegen_seq_delete_starred_exprs(Parser *p, asdl_seq *kwargs)
     return new_seq;
 }
 
+asdl_expr_seq*
+_PyPegen_create_pipe_call_arguments(Parser *p, expr_ty list)
+{
+    asdl_expr_seq *args;
+
+    if (list->kind == Tuple_kind) {
+        args = list->v.Tuple.elts;
+    }
+    else {
+        args = CHECK(asdl_expr_seq*, (asdl_expr_seq*)_PyPegen_singleton_seq(p, list));
+    }
+
+    return args;
+}
+
 expr_ty
 _PyPegen_ensure_imaginary(Parser *p, expr_ty exp)
 {
